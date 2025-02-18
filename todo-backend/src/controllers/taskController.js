@@ -88,3 +88,13 @@ exports.deleteTask = async (req, res) => {
     res.status(500).send();
   }
 };
+
+//Delete all tasks
+exports.deleteAllTasks = async (req, res) => {
+  try {
+    await Task.deleteMany({ owner: req.user._id });
+    res.send();
+  } catch (error) {
+    res.status(500).send();
+  }
+};

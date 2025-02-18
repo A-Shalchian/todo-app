@@ -19,4 +19,7 @@ router.patch("/tasks/:id", auth, taskController.updateTask);
 //delete task by id
 router.delete("/tasks/:id", auth, taskController.deleteTask);
 
+//delete all tasks
+router.delete("/tasks", auth, taskController.deleteAllTasks);
+
 module.exports = router;
