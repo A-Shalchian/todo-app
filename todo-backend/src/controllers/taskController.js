@@ -18,10 +18,11 @@ exports.createTask = async (req, res) => {
 //Get all tasks
 exports.getTasks = async (req, res) => {
   try {
-    await req.user.populate("tasks").execPopulate();
-    res.send(req.user.tasks);
+    const tasks = await Task.find({ owner: req.user._id });
+    res.send(tasks);
   } catch (error) {
-    res.status(500).send();
+    console.error("Error fetching tasks:", error);
+    res.status(500).send({ error: "Server error while fetching tasks." });
   }
 };
 

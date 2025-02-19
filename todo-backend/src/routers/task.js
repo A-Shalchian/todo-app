@@ -1,8 +1,7 @@
 const express = require("express");
+const router = new express.Router();
 const taskController = require("../controllers/taskController");
 const auth = require("../middleware/auth");
-
-const router = new express.Router();
 
 //create a task
 router.post("/tasks", auth, taskController.createTask);
