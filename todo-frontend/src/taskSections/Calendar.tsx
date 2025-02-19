@@ -13,33 +13,39 @@ type CalendarWithEvents = {
   };
 };
 
-export const Calendar = () => {
+interface Task {
+  _id: string;
+  description: string;
+  completed: boolean;
+}
+
+interface CalendarProps {
+  tasks?: Task[];
+}
+
+export const Calendar = ({ tasks = [] }: CalendarProps) => {
   const plugins = [
     createEventsServicePlugin(),
     createEventModalPlugin(),
     createDragAndDropPlugin(),
   ];
 
+  // Convert tasks to calendar events
+  const taskEvents = tasks.map((task) => ({
+    id: task._id,
+    title: task.description,
+    start: new Date().toISOString().split("T")[0] + " 09:00", // Default to today 9 AM
+    end: new Date().toISOString().split("T")[0] + " 10:00", // Default to 1 hour duration
+    description: task.description,
+    isTask: true,
+    completed: task.completed,
+  }));
+
   const calendar = useNextCalendarApp(
     {
       views: [createViewDay(), createViewWeek()],
-      events: [
-        {
-          id: "1",
-          title: "Event 1",
-          start: "2025-02-18 10:05",
-          end: "2025-02-18 11:05",
-          description: "Event 1 description",
-        },
-        {
-          id: "2",
-          title: "Event 2",
-          start: "2025-02-19 11:05",
-          end: "2025-02-19 14:05",
-          description: "Event 2 description",
-        },
-      ],
-      selectedDate: "2025-02-18",
+      events: [...taskEvents], // Include task events
+      selectedDate: new Date().toISOString().split("T")[0], // Set to today
     },
     plugins
   );
