@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import todoImage from "@/assets/images/todo.jpg";
+import ArrowRight from "@/assets/icons/ArrowRight.svg";
 
 export const Hero = () => {
   return (
@@ -33,6 +34,20 @@ export const Hero = () => {
               members seamlessly. Perfect for both personal and professional
               task management.
             </p>
+            <div className="flex justify-between">
+              <a href="/login">
+                <div className=" bg-indigo-500 text-white px-10 py-3 rounded-lg font-bold items-center justify-center tracking-tight btn-hover group">
+                  Get Started
+                  <ArrowRight className="h-7 w-6 inline-flex justify-center items-center ml-2 fill-current group-hover:text-white/60" />
+                </div>
+              </a>
+              <a href="/login">
+                <div className=" bg-emerald-500 text-white px-10 py-3 rounded-lg font-bold items-center justify-center tracking-tight btn-hover group">
+                  Read Docs
+                  <ArrowRight className="h-7 w-6 inline-flex justify-center items-center ml-2 fill-current group-hover:text-white/60" />
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
