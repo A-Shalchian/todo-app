@@ -21,7 +21,7 @@ export const LoginForm = () => {
     try {
       const { token } = await loginUser(email, password);
       localStorage.setItem("token", token);
-      router.push("/");
+      router.push("/tasks");
     } catch (error) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -30,15 +30,17 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <Card className="w-full max-w-5xl">
+    <div className="flex items-center justify-center min-h-screen pb-72">
+      <Card className="w-full md:w-1/2 max-w-96 md:max-w-3xl p-6">
         <CardHeader className="text-center font-bold text-2xl">
           <CardTitle>Login to your account</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="space-y-3">
+              <Label htmlFor="email" className="text-base">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -49,8 +51,10 @@ export const LoginForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-3">
+              <Label htmlFor="password" className="text-base">
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
@@ -62,7 +66,11 @@ export const LoginForm = () => {
               />
             </div>
             {error && <p className="text-red-500">{error}</p>}
-            <Button className="w-full" type="submit" disabled={isLoading}>
+            <Button
+              className="w-1/2 flex justify-center mx-auto"
+              type="submit"
+              disabled={isLoading}
+            >
               {isLoading ? "Logging in..." : "Login"}
             </Button>
             <div className="text-center text-sm">

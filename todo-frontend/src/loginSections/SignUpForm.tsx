@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signupUser } from "@/utils/userApi";
 
-export function SignUpForm() {
+export const SignUpForm = () => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,15 +32,17 @@ export function SignUpForm() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <Card className="w-full max-w-5xl">
+    <div className="flex items-center justify-center min-h-screen pb-44">
+      <Card className="w-full md:w-1/2 max-w-96 md:max-w-3xl p-6">
         <CardHeader className="text-center font-bold text-2xl">
           <CardTitle>Create an account</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+            <div className="space-y-3">
+              <Label htmlFor="name" className="text-base">
+                Name
+              </Label>
               <Input
                 id="name"
                 type="text"
@@ -51,8 +53,10 @@ export function SignUpForm() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="space-y-3">
+              <Label htmlFor="email" className="text-base">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -63,11 +67,14 @@ export function SignUpForm() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-3">
+              <Label htmlFor="password" className="text-base">
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
+                placeholder="********"
                 required
                 disabled={isLoading}
                 value={password}
@@ -75,7 +82,11 @@ export function SignUpForm() {
               />
             </div>
             {error && <p className="text-red-500">{error}</p>}
-            <Button className="w-full" type="submit" disabled={isLoading}>
+            <Button
+              className="w-1/2 flex justify-center mx-auto "
+              type="submit"
+              disabled={isLoading}
+            >
               {isLoading ? "Creating account..." : "Sign up"}
             </Button>
             <div className="text-center text-sm">
@@ -89,4 +100,4 @@ export function SignUpForm() {
       </Card>
     </div>
   );
-}
+};
