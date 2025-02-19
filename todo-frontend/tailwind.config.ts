@@ -8,6 +8,7 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/homeSections/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/loginSections/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/taskSections/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     screens: {
