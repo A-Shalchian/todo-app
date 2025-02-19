@@ -99,3 +99,17 @@ exports.deleteAllTasks = async (req, res) => {
     res.status(500).send();
   }
 };
+
+//Get tasks by date
+exports.getTasksByDate = async (req, res) => {
+  const { date } = req.query;
+
+  try {
+    const tasks = await Task.find({
+      date: date,
+    });
+    res.send(tasks);
+  } catch (error) {
+    res.status(500).send();
+  }
+};

@@ -21,4 +21,7 @@ router.delete("/tasks/:id", auth, taskController.deleteTask);
 //delete all tasks
 router.delete("/tasks", auth, taskController.deleteAllTasks);
 
+//get tasks by date
+router.get("/tasks/date", auth, taskController.getTasksByDate);
+
 module.exports = router;
